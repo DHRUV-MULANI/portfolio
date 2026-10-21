@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://dhruvmulani.dev/sitemap.xml
+Sitemap: https://dhruvmulani.com/sitemap.xml

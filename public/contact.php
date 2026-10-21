@@ -55,12 +55,12 @@ $emailBody .= "Date:    " . date('Y-m-d H:i:s') . "\n";
 $emailBody .= "=================================================\n\n";
 $emailBody .= "Message:\n" . $message . "\n\n";
 $emailBody .= "-------------------------------------------------\n";
-$emailBody .= "Sent from: https://" . ($_SERVER['HTTP_HOST'] ?? 'dhruvmulani.dev') . "\n";
+$emailBody .= "Sent from: https://" . ($_SERVER['HTTP_HOST'] ?? 'dhruvmulani.com') . "\n";
 
 $headers = [];
 $headers[] = 'MIME-Version: 1.0';
 $headers[] = 'Content-type: text/plain; charset=UTF-8';
-$headers[] = 'From: noreply@' . ($_SERVER['HTTP_HOST'] ?? 'dhruvmulani.dev');
+$headers[] = 'From: noreply@' . ($_SERVER['HTTP_HOST'] ?? 'dhruvmulani.com');
 $headers[] = 'Reply-To: ' . $email;
 $headers[] = 'X-Mailer: PHP/' . phpversion();
 
