@@ -48,7 +48,7 @@ export default function AboutSection() {
               <div className="dossier-meta-footer">
                 <div className="dossier-name">DHRUV MULANI</div>
                 <div className="dossier-role">Cybersecurity Intern @ Cyber Octet</div>
-                <div className="dossier-institution">IITRAM Ahmedabad · Comp Eng (2023–27)</div>
+                <div className="dossier-institution">IITRAM Ahmedabad · Comp Eng (Final Year)</div>
 
                 <div className="dossier-pills-row">
                   <span className="dossier-pill">VAPT</span>
@@ -77,7 +77,7 @@ export default function AboutSection() {
                   <strong>AI-assisted security automation</strong>. Rather than treating security as an afterthought or checklist, I approach codebases and network protocols with an adversarial mindset: seeking out logic flaws, parameter tampering vectors, and authentication bypasses that automated scanners frequently overlook.
                 </p>
                 <p>
-                  Currently in my second year pursuing a <strong>Bachelor of Engineering in Computer Engineering at IITRAM, Ahmedabad</strong> (2023–2027), I pair rigorous academic training in operating systems, networks, and low-level cryptography with live offensive testing in the field.
+                  Currently in my final year pursuing a <strong>Bachelor of Engineering in Computer Engineering at IITRAM, Ahmedabad</strong>, I pair rigorous academic training in operating systems, networks, and low-level cryptography with live offensive testing in the field.
                 </p>
               </div>
             </Reveal>

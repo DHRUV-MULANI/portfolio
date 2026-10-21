@@ -10,7 +10,7 @@ export const personal = {
   eyebrow: 'CYBERSECURITY · SECURITY RESEARCH · AUTOMATION',
   bio: `I'm a cybersecurity practitioner working across offensive security, vulnerability research, digital forensics, and security automation — with a growing focus on AI-assisted tools that streamline how we find and fix weaknesses.
 
-Currently studying Computer Engineering at IITRAM, Ahmedabad, while putting theory to work through internships, CTF competitions, and independent research on real-world vulnerabilities.`,
+Currently in my final year of Computer Engineering at IITRAM, Ahmedabad, while putting theory to work through internships, CTF competitions, and independent research on real-world vulnerabilities.`,
   location: 'Ahmedabad, India',
   email: 'dhruvkumarmulani@gmail.com',
   phone: '+918758821755',
@@ -28,7 +28,7 @@ export const education = {
   degree: 'Bachelor of Engineering in Computer Engineering',
   institution: 'Institute of Infrastructure, Technology, Research, and Management (IITRAM)',
   location: 'Ahmedabad, India',
-  period: '2023 – 2027',
+  period: 'Final Year Candidate',
   coursework: [
     'Operating Systems',
     'Computer Networks',

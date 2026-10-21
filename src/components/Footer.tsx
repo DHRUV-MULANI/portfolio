@@ -26,7 +26,7 @@ export default function Footer() {
               Cybersecurity practitioner specializing in vulnerability research, penetration testing, and security automation tooling. Breaking assumptions to build unbreakable systems.
             </p>
             <div className="footer-location-text">
-              Based in Ahmedabad, Gujarat, India · IITRAM Computer Engineering (2023–2027)
+              Based in Ahmedabad, Gujarat, India · IITRAM Computer Engineering (Final Year)
             </div>
           </div>
 

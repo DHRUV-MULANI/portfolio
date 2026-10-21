@@ -96,7 +96,7 @@ export default function InteractiveTerminal() {
         resultNode = (
           <div className="term-output-block">
             <div className="term-line highlight">
-              IDENTIFIER: Dhruv Mulani [Computer Engineering @ IITRAM, 2023-2027]
+              IDENTIFIER: Dhruv Mulani [Computer Engineering @ IITRAM, Final Year]
             </div>
             <div className="term-line">
               ROLE: Cybersecurity Practitioner & Vulnerability Researcher
