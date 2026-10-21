@@ -39,11 +39,20 @@ export default function InteractiveTerminal() {
     },
   ])
   const [isExpanded, setIsExpanded] = useState(false)
-  const bottomRef = useRef<HTMLDivElement | null>(null)
+  const viewportRef = useRef<HTMLDivElement | null>(null)
   const inputRef = useRef<HTMLInputElement | null>(null)
+  const isInitialMount = useRef(true)
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
+    // Prevent scrolling on initial mount so page always starts at top
+    if (isInitialMount.current) {
+      isInitialMount.current = false
+      return
+    }
+    // Only scroll the internal terminal container, NEVER the browser window
+    if (viewportRef.current) {
+      viewportRef.current.scrollTop = viewportRef.current.scrollHeight
+    }
   }, [history])
 
   const executeCommand = (cmdRaw: string) => {
@@ -273,6 +282,7 @@ export default function InteractiveTerminal() {
 
       {/* Terminal Log Viewport */}
       <div
+        ref={viewportRef}
         className="terminal-viewport"
         onClick={() => inputRef.current?.focus()}
       >
@@ -316,8 +326,6 @@ export default function InteractiveTerminal() {
             <CornerDownLeft size={13} />
           </button>
         </div>
-
-        <div ref={bottomRef} />
       </div>
 
       {/* Quick Action Chips Bar */}

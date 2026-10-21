@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import Navbar from './components/Navbar'
 import ScrollProgress from './components/ScrollProgress'
 import TelemetryMarquee from './components/TelemetryMarquee'
@@ -13,6 +14,14 @@ import EducationSection from './sections/EducationSection'
 import ContactSection from './sections/ContactSection'
 
 export default function App() {
+  useEffect(() => {
+    // Ensure the website ALWAYS lands at the very top of the page on refresh or visit
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual'
+    }
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <div className="portfolio-app-root">
       <ScrollProgress />
