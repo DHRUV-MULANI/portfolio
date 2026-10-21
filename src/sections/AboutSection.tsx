@@ -64,7 +64,7 @@ export default function AboutSection() {
             <Reveal delay={0.15}>
               <div className="editorial-quote-box">
                 <p className="quote-lead">
-                  "Security is never a product you install. It's the disciplined refusal to accept default trust boundaries."
+                  "I hack systems to secure them."
                 </p>
               </div>
             </Reveal>

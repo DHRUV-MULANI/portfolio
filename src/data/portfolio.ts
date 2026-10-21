@@ -5,7 +5,7 @@
 
 export const personal = {
   name: 'Dhruv Mulani',
-  tagline: 'Breaking assumptions. Building security.',
+  tagline: 'I hack systems to secure them.',
   subTagline: 'I explore how systems fail — and how to make them stronger.',
   eyebrow: 'CYBERSECURITY · SECURITY RESEARCH · AUTOMATION',
   bio: `I'm a cybersecurity practitioner working across offensive security, vulnerability research, digital forensics, and security automation — with a growing focus on AI-assisted tools that streamline how we find and fix weaknesses.

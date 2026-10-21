@@ -23,7 +23,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="footer-mission">
-              Cybersecurity practitioner specializing in vulnerability research, penetration testing, and security automation tooling. Breaking assumptions to build unbreakable systems.
+              "I hack systems to secure them." Cybersecurity practitioner specializing in vulnerability research, penetration testing, and security automation tooling.
             </p>
             <div className="footer-location-text">
               Based in Ahmedabad, Gujarat, India · IITRAM Computer Engineering (Final Year)

@@ -101,6 +101,9 @@ export default function InteractiveTerminal() {
             <div className="term-line">
               ROLE: Cybersecurity Practitioner & Vulnerability Researcher
             </div>
+            <div className="term-line warning">
+              MOTTO: "I hack systems to secure them."
+            </div>
             <div className="term-line">
               FOCUS: Offensive Security, VAPT, Bug Bounty, AI Security Tooling
             </div>

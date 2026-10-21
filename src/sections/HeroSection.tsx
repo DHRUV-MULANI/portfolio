@@ -59,7 +59,7 @@ export default function HeroSection() {
             {/* Core Philosophy Statement */}
             <motion.div className="hero-statement" variants={variants.item}>
               <div className="statement-lead">
-                Breaking assumptions. <em>Building resilience.</em>
+                I hack systems to <em>secure them.</em>
               </div>
               <p className="statement-body">
                 Exploring how software architectures and access controls fail in the wild — specializing in <strong>vulnerability research</strong>, <strong>penetration testing (VAPT)</strong>, and <strong>AI-assisted security automation</strong>.
