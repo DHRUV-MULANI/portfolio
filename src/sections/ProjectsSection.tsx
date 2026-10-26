@@ -1,11 +1,8 @@
-import { useState } from 'react'
-import { projects } from '../data/portfolio'
+import { projects, githubProjects } from '../data/portfolio'
 import Reveal from '../components/Reveal'
-import { Github, ExternalLink, Terminal, Shield, Layers, Database, ArrowUpRight } from 'lucide-react'
+import { Github, ArrowUpRight, Code2, FolderGit2, Star } from 'lucide-react'
 
 export default function ProjectsSection() {
-  const [activeProjectTab, setActiveProjectTab] = useState<'preview' | 'arch'>('preview')
-
   return (
     <section id="projects" className="section projects-editorial-section">
       <div className="container">
@@ -24,6 +21,7 @@ export default function ProjectsSection() {
           </p>
         </Reveal>
 
+        {/* Featured Main Projects */}
         <div className="projects-editorial-list" style={{ marginTop: '48px' }}>
           {/* Project 1: LOGify */}
           <Reveal delay={0.1}>
@@ -168,14 +166,87 @@ export default function ProjectsSection() {
           </Reveal>
         </div>
 
+        {/* ============================================================ */}
+        {/* Best GitHub Repositories Sub-Section (Added at last of projects) */}
+        {/* ============================================================ */}
+        <Reveal delay={0.25}>
+          <div className="github-projects-subheading-wrap" style={{ marginTop: '64px', marginBottom: '24px' }}>
+            <div className="section-label">
+              <span className="eyebrow">05.1 // OPEN-SOURCE TOOLING &amp; PROTOCOLS</span>
+            </div>
+            <div className="section-title-row">
+              <h3 className="section-title" style={{ fontSize: '1.5rem' }}>
+                Best GitHub repositories<span className="title-accent-dot">.</span>
+              </h3>
+              <div className="section-counter-badge">GITHUB SOURCE REPOSITORIES</div>
+            </div>
+            <p className="section-subtitle">
+              Adversarial automation frameworks, post-quantum cryptographic engines, out-of-band callback infrastructures, and algorithmic payment channel simulations.
+            </p>
+          </div>
+        </Reveal>
+
+        <div className="github-projects-cards-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '20px' }}>
+          {githubProjects.map((gp, idx) => (
+            <Reveal key={gp.id} delay={idx * 0.08}>
+              <div className="github-tool-card">
+                <div className="gtc-topbar">
+                  <div className="gtc-icon-wrap">
+                    <FolderGit2 size={16} className="text-accent" />
+                  </div>
+                  <span className="gtc-lang-tag">{gp.language}</span>
+                  <a
+                    href={gp.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="gtc-link-btn"
+                    aria-label={`Open ${gp.title} repository on GitHub`}
+                  >
+                    <Github size={14} />
+                    <ArrowUpRight size={13} />
+                  </a>
+                </div>
+
+                <h4 className="gtc-title">
+                  <a href={gp.githubUrl} target="_blank" rel="noopener noreferrer">
+                    {gp.title}
+                  </a>
+                </h4>
+                <div className="gtc-tagline">{gp.tagline}</div>
+                <p className="gtc-desc">{gp.description}</p>
+
+                <div className="gtc-tags-list">
+                  {gp.tags.map((tag) => (
+                    <span key={tag} className="gtc-tag-pill">
+                      #{tag}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="gtc-footer">
+                  <a
+                    href={gp.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="gtc-view-link"
+                  >
+                    <span>View Repository on GitHub</span>
+                    <ArrowUpRight size={13} />
+                  </a>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
         {/* GitHub Repository CTA */}
         <Reveal delay={0.3}>
-          <div className="projects-github-cta">
+          <div className="projects-github-cta" style={{ marginTop: '48px' }}>
             <div className="cta-left">
               <Github size={24} className="text-accent" />
               <div>
-                <div className="cta-title">Explore Open Source &amp; Exploit Scripts on GitHub</div>
-                <div className="cta-desc">Audit scripts, automation prototypes, and CTF writeups</div>
+                <div className="cta-title">Explore Complete Security Arsenal on GitHub</div>
+                <div className="cta-desc">Audit scripts, red team toolchains, automation prototypes, and CTF writeups</div>
               </div>
             </div>
             <a

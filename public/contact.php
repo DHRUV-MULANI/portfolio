@@ -42,7 +42,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 
 // Recipient Email (Dhruv Mulani)
-$to = 'dhruvkumarmulani@gmail.com';
+$to = 'dhruvmulani.work@gmail.com';
 
 $emailSubject = "[Portfolio Transmission] " . $subject;
 
@@ -74,7 +74,7 @@ if ($sent) {
     http_response_code(200);
     echo json_encode([
         'success' => true,
-        'message' => 'Transmission received. (Direct fallback to dhruvkumarmulani@gmail.com enabled)',
+        'message' => 'Transmission received. (Direct fallback to dhruvmulani.work@gmail.com enabled)',
         'fallbackMailto' => 'mailto:' . $to . '?subject=' . rawurlencode($emailSubject) . '&body=' . rawurlencode($emailBody)
     ]);
 }

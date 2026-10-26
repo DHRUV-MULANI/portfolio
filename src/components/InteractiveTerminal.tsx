@@ -10,8 +10,9 @@ interface HistoryEntry {
 const COMMAND_HELP = [
   { cmd: 'whoami', desc: 'Display researcher profile & clearance' },
   { cmd: 'skills', desc: 'Offensive toolchains, protocols & languages' },
+  { cmd: 'ctf', desc: 'Zero Trace, KPMG CTF ranks & published writeups' },
   { cmd: 'cve', desc: 'Disclosed vulnerabilities & Bug Bounty findings' },
-  { cmd: 'exp', desc: 'Internship history & ongoing operations' },
+  { cmd: 'exp', desc: 'Internship history & field operational tenure' },
   { cmd: 'thm', desc: 'TryHackMe metrics & global standing' },
   { cmd: 'contact', desc: 'Direct encrypted communication channels' },
   { cmd: 'clear', desc: 'Flush terminal buffer' },
@@ -161,26 +162,26 @@ export default function InteractiveTerminal() {
       case 'experience':
         resultNode = (
           <div className="term-output-block">
-            <div className="term-subheading">OPERATIONAL TRACK RECORD:</div>
+            <div className="term-subheading">OPERATIONAL TRACK RECORD (FIELD EXPERIENCE):</div>
             <div className="term-line">
-              <span className="term-highlight">01. Cyber Octet</span> (Nov 2025 - Present) — Cybersecurity Intern [VAPT]
+              <span className="term-highlight">01. Cyber Octet</span> (Nov 2025 – Nov 2026 · <span className="term-highlight">1 Year</span>) — Cybersecurity Intern [VAPT]
               <br />
               <span className="text-muted">
-                └ Performing systematic web application penetration testing & vulnerability assessment via OWASP methodologies.
+                └ Performing systematic web application penetration testing &amp; vulnerability assessment via OWASP methodologies.
               </span>
             </div>
             <div className="term-line">
-              <span className="term-highlight">02. SarthiBus</span> (Aug 2025 - Dec 2025) — Bug Hunter
+              <span className="term-highlight">02. SarthiBus</span> (Aug 2025 – Dec 2025 · <span className="term-highlight">5 Months</span>) — Bug Hunter
               <br />
               <span className="text-muted">
                 └ Discovered financial logic flaw, coordinated patch release, awarded recognition certificate.
               </span>
             </div>
             <div className="term-line">
-              <span className="term-highlight">03. CodTech</span> (Jan 2025 - Mar 2025) — Ethical Hacking Intern
+              <span className="term-highlight">03. CodTech</span> (Jan 2025 – Mar 2025 · <span className="term-highlight">3 Months</span>) — Ethical Hacking Intern
               <br />
               <span className="text-muted">
-                └ Built file integrity monitoring daemon & performed API security audits.
+                └ Built file integrity monitoring daemon &amp; performed API security audits.
               </span>
             </div>
           </div>
@@ -205,15 +206,51 @@ export default function InteractiveTerminal() {
         )
         break
 
+      case 'ctf':
+      case 'writeups':
+      case 'achievements':
+        resultNode = (
+          <div className="term-output-block">
+            <div className="term-subheading">COMPETITIVE CTFS &amp; PUBLISHED WRITEUPS:</div>
+            <div className="term-line success">
+              🏅 <span className="term-highlight">Zero Trace CTF 2026 (HackCTF)</span> — 4TH PLACE OVERALL
+              <br />
+              <span className="text-muted">
+                └ 18 Solves (Web, Pwn, Crypto, Forensics, OSINT). Repo: <a href="https://github.com/DHRUV-MULANI/zero-trace-ctf-writeups" target="_blank" rel="noreferrer" className="term-link">github.com/DHRUV-MULANI/zero-trace-ctf-writeups</a>
+              </span>
+            </div>
+            <div className="term-line success">
+              🏅 <span className="term-highlight">KPMG CTF 2026 Campus Edition</span> — 610 / 680 POINTS
+              <br />
+              <span className="text-muted">
+                └ 33 Walkthroughs across 10 categories, 31 flags. Repo: <a href="https://github.com/DHRUV-MULANI/kpmg-ctf-2026-writeups" target="_blank" rel="noreferrer" className="term-link">github.com/DHRUV-MULANI/kpmg-ctf-2026-writeups</a>
+              </span>
+            </div>
+            <div className="term-line">
+              🏆 <span className="term-highlight">Cyber Shadez ’26 National TechFest</span> — WINNER (1st Place Bug Bounty)
+            </div>
+            <div className="term-line">
+              🎖️ <span className="term-highlight">ISEA-ISAP CTF ’26 (IIT Madras)</span> — 14TH PLACE (1,613 Points)
+            </div>
+            <div className="term-line">
+              ⚡ <span className="term-highlight">TryHackMe Standing</span> — Top 3% Globally (Boss.Hack3r)
+            </div>
+          </div>
+        )
+        break
+
       case 'contact':
         resultNode = (
           <div className="term-output-block">
             <div className="term-subheading">COMMUNICATION ENDPOINTS:</div>
             <div className="term-line">
-              EMAIL: <a href="mailto:dhruvkumarmulani@gmail.com" className="term-link">dhruvkumarmulani@gmail.com</a>
+              EMAIL: <a href="mailto:dhruvmulani.work@gmail.com" className="term-link">dhruvmulani.work@gmail.com</a>
             </div>
             <div className="term-line">
-              PHONE: <span className="term-highlight">+91 87588 21755</span>
+              LOCATION: <span className="term-highlight">Ahmedabad, India (UTC+5:30)</span>
+            </div>
+            <div className="term-line">
+              DISPATCH: <span className="term-highlight">Direct Encrypted Transmission &lt;24h SLA</span>
             </div>
             <div className="term-line">
               LINKEDIN: <a href="https://linkedin.com/in/dhruv-mulani" target="_blank" rel="noreferrer" className="term-link">linkedin.com/in/dhruv-mulani</a>
@@ -335,7 +372,7 @@ export default function InteractiveTerminal() {
       <div className="terminal-chips-bar">
         <span className="chips-hint">QUICK EXEC:</span>
         <div className="chips-scroll">
-          {['whoami', 'skills', 'cve', 'exp', 'thm', 'contact', 'help', 'clear'].map((c) => (
+          {['whoami', 'skills', 'ctf', 'cve', 'exp', 'thm', 'contact', 'help', 'clear'].map((c) => (
             <button
               key={c}
               onClick={() => executeCommand(c)}

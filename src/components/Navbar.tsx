@@ -10,8 +10,9 @@ const navItems = [
   { label: 'Experience', href: '#experience' },
   { label: 'Projects', href: '#projects' },
   { label: 'Achievements', href: '#achievements' },
-  { label: 'Credentials', href: '#education' },
+  { label: 'Academics', href: '#education' },
   { label: 'Contact', href: '#contact' },
+  { label: 'Resume', href: '/resume.html', isExternal: true },
 ]
 
 export default function Navbar() {
@@ -64,31 +65,45 @@ export default function Navbar() {
 
           {/* Desktop Navigation Links */}
           <nav className="navbar-desktop-nav" role="navigation" aria-label="Main Navigation">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="nav-link-editorial"
-                onClick={(e) => {
-                  e.preventDefault()
-                  handleNavClick(item.href)
-                }}
-              >
-                {item.label}
-              </a>
-            ))}
+            {navItems.map((item) =>
+              item.isExternal ? (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="nav-link-editorial resume-nav-pill-link"
+                  aria-label="Open Dhruv Mulani Resume in new tab"
+                >
+                  <span>{item.label}</span>
+                  <span className="nav-external-arrow">↗</span>
+                </a>
+              ) : (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="nav-link-editorial"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    handleNavClick(item.href)
+                  }}
+                >
+                  {item.label}
+                </a>
+              )
+            )}
           </nav>
 
           {/* Right Action Buttons */}
           <div className="navbar-right-actions">
             <a
-              href={personal.resumeUrl}
-              download
+              href="/Dhruv_Mulani.pdf"
+              download="Dhruv_Mulani.pdf"
               className="btn btn-editorial-nav-resume"
-              aria-label="Download Dhruv Mulani Resume PDF"
+              aria-label="Direct Download Dhruv Mulani Resume PDF"
             >
               <Download size={13} />
-              <span>Resume</span>
+              <span>Download PDF</span>
             </a>
 
             <button
@@ -132,35 +147,52 @@ export default function Navbar() {
             </div>
 
             <div className="drawer-links-stack">
-              {navItems.map((item, idx) => (
-                <motion.a
-                  key={item.href}
-                  href={item.href}
-                  className="drawer-nav-item"
-                  initial={{ opacity: 0, x: -12 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: idx * 0.03 + 0.04 }}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    handleNavClick(item.href)
-                  }}
-                >
-                  <span className="drawer-index">0{idx + 1} //</span>
-                  <span className="drawer-label">{item.label}</span>
-                </motion.a>
-              ))}
+              {navItems.map((item, idx) =>
+                item.isExternal ? (
+                  <motion.a
+                    key={item.href}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="drawer-nav-item resume-highlight"
+                    initial={{ opacity: 0, x: -12 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: idx * 0.03 + 0.04 }}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    <span className="drawer-index">0{idx + 1} //</span>
+                    <span className="drawer-label">{item.label} (Dedicated Page ↗)</span>
+                  </motion.a>
+                ) : (
+                  <motion.a
+                    key={item.href}
+                    href={item.href}
+                    className="drawer-nav-item"
+                    initial={{ opacity: 0, x: -12 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: idx * 0.03 + 0.04 }}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      handleNavClick(item.href)
+                    }}
+                  >
+                    <span className="drawer-index">0{idx + 1} //</span>
+                    <span className="drawer-label">{item.label}</span>
+                  </motion.a>
+                )
+              )}
             </div>
 
             <div className="drawer-footer-actions">
               <a
-                href={personal.resumeUrl}
-                download
+                href="/Dhruv_Mulani.pdf"
+                download="Dhruv_Mulani.pdf"
                 className="btn btn-editorial-primary"
                 style={{ width: '100%', justifyContent: 'center' }}
                 onClick={() => setMobileOpen(false)}
               >
                 <Download size={15} />
-                <span>Download Resume (PDF)</span>
+                <span>Direct Download Resume (PDF)</span>
               </a>
             </div>
           </motion.div>

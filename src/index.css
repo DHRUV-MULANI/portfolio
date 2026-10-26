@@ -1709,6 +1709,22 @@ body {
   font-weight: 500;
 }
 
+.exp-duration-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #00F5D4;
+  background: rgba(0, 245, 212, 0.08);
+  border: 1px solid rgba(0, 245, 212, 0.3);
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  width: fit-content;
+}
+
 .exp-status-live {
   display: inline-flex;
   align-items: center;
@@ -2020,6 +2036,168 @@ body {
 .mock-line.success { color: var(--accent-radar); }
 .mock-line.prompt { color: var(--text-pure); margin-top: 6px; font-weight: 600; }
 
+/* GitHub Tool Cards Grid */
+.github-tool-card {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  background: radial-gradient(circle at 15% 15%, rgba(0, 245, 212, 0.05) 0%, rgba(8, 12, 20, 0.98) 100%);
+  border: 1px solid var(--border-solid);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  height: 100%;
+}
+
+.github-tool-card:hover {
+  border-color: rgba(0, 245, 212, 0.4);
+  background: radial-gradient(circle at 20% 20%, rgba(0, 245, 212, 0.09) 0%, rgba(11, 16, 28, 0.98) 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.gtc-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.gtc-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  background: rgba(0, 245, 212, 0.08);
+  border: 1px solid rgba(0, 245, 212, 0.25);
+  border-radius: var(--radius-xs);
+}
+
+.gtc-lang-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: #38BDF8;
+  background: rgba(56, 189, 248, 0.1);
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  letter-spacing: 0.05em;
+}
+
+.gtc-link-btn {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  color: var(--text-dim);
+  padding: 6px;
+  border-radius: var(--radius-xs);
+  transition: all var(--transition-fast);
+}
+
+.gtc-link-btn:hover {
+  color: #00F5D4;
+  transform: translateY(-1px);
+}
+
+.gtc-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-pure);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.gtc-title a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.gtc-title a:hover {
+  color: #00F5D4;
+}
+
+.gtc-tagline {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: #00F5D4;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.gtc-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin-bottom: 16px;
+  flex: 1;
+}
+
+.gtc-tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.gtc-tag-pill {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: var(--text-dim);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  padding: 2px 7px;
+  border-radius: var(--radius-xs);
+}
+
+.gtc-footer {
+  padding-top: 12px;
+  border-top: 1px solid var(--border-subtle);
+  margin-top: auto;
+}
+
+.gtc-view-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: #00F5D4;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.gtc-view-link:hover {
+  color: #38BDF8;
+  gap: 8px;
+}
+
+/* Resume Navigation Tab Styling */
+.resume-nav-pill-link {
+  color: #00F5D4 !important;
+  font-weight: 600 !important;
+  display: inline-flex !important;
+  align-items: center;
+  gap: 3px;
+}
+
+.resume-nav-pill-link .nav-external-arrow {
+  font-size: 11px;
+  opacity: 0.8;
+  transition: transform 0.2s ease;
+}
+
+.resume-nav-pill-link:hover .nav-external-arrow {
+  transform: translate(1px, -1px);
+}
+
+.drawer-nav-item.resume-highlight {
+  color: #00F5D4 !important;
+  border-left: 2px solid #00F5D4;
+}
+
 .projects-github-cta {
   display: flex;
   justify-content: space-between;
@@ -2159,50 +2337,271 @@ body {
   color: var(--accent-radar);
 }
 
-.podium-domain {
-  color: var(--text-dim);
+.podium-action-links {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 14px;
 }
 
-.competitions-roster-wrap {
-  padding: 20px;
+.podium-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 5px 10px;
+  border-radius: var(--radius-xs);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.podium-action-btn.writeup-btn {
+  color: #00F5D4;
+  background: rgba(0, 245, 212, 0.08);
+  border: 1px solid rgba(0, 245, 212, 0.3);
+}
+
+.podium-action-btn.writeup-btn:hover {
+  background: rgba(0, 245, 212, 0.18);
+  border-color: #00F5D4;
+  transform: translateY(-1px);
+}
+
+.podium-action-btn.cert-btn {
+  color: #38BDF8;
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.podium-action-btn.cert-btn:hover {
+  background: rgba(56, 189, 248, 0.18);
+  border-color: #38BDF8;
+  transform: translateY(-1px);
+}
+
+/* Appreciation Spotlight Card */
+.appreciation-spotlight-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 22px 28px;
+  background: radial-gradient(circle at 10% 50%, rgba(0, 245, 212, 0.07) 0%, rgba(8, 12, 20, 0.95) 100%);
+  border: 1px solid rgba(0, 245, 212, 0.3);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.appreciation-icon-col {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  background: rgba(0, 245, 212, 0.1);
+  border: 1px solid rgba(0, 245, 212, 0.35);
+  border-radius: var(--radius-sm);
+}
+
+.appreciation-content-col {
+  flex: 1;
+}
+
+.appreciation-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: #00F5D4;
+  margin-bottom: 4px;
+}
+
+.appreciation-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-pure);
+  margin-bottom: 4px;
+}
+
+.appreciation-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+.security-honor-pill {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #00F5D4;
+  background: rgba(0, 245, 212, 0.12);
+  border: 1px solid rgba(0, 245, 212, 0.4);
+  padding: 5px 12px;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+/* Certs Showcase Grid */
+.certs-showcase-wrap {
   background: var(--bg-deep);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
+  padding: 24px;
 }
 
-.roster-header {
+.certs-section-heading {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 18px;
+}
+
+.certs-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+.cert-card-interactive {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  transition: all var(--transition-fast);
+}
+
+.cert-card-interactive:hover {
+  border-color: rgba(0, 245, 212, 0.35);
+  background: rgba(14, 20, 32, 0.85);
+  transform: translateY(-2px);
+}
+
+.cert-top-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.cert-type-pill {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: #38BDF8;
+  background: rgba(56, 189, 248, 0.1);
+  padding: 2px 7px;
+  border-radius: var(--radius-xs);
+  letter-spacing: 0.05em;
+}
+
+.cert-status-pill {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: #00F5D4;
+  letter-spacing: 0.05em;
+}
+
+.cert-main-title {
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--text-pure);
+  margin-bottom: 4px;
+  line-height: 1.35;
+}
+
+.cert-issuer-line {
   font-family: var(--font-mono);
   font-size: 10px;
+  color: var(--text-dim);
+}
+
+/* Competitions & Hackathons Dual Grid */
+.competitions-hackathons-dual-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.roster-panel {
+  background: var(--bg-deep);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 20px;
+}
+
+.roster-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
   letter-spacing: 0.1em;
   color: var(--text-muted);
   margin-bottom: 14px;
 }
 
-.roster-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 10px;
+.roster-tag-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.roster-item {
+.roster-badge-item {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 8px;
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
   color: var(--text-primary);
   background: var(--bg-surface);
-  padding: 7px 12px;
+  padding: 8px 12px;
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-xs);
+  transition: all var(--transition-fast);
 }
 
-.roster-bullet {
+.roster-badge-item:hover {
+  border-color: rgba(0, 245, 212, 0.3);
+  color: var(--text-pure);
+}
+
+.roster-badge-item.hackathon-item {
+  border-left: 2px solid #818CF8;
+}
+
+.badge-bullet {
   color: var(--accent-radar);
-  font-size: 8px;
+  font-size: 9px;
+}
+
+/* Education single card wide */
+.edu-card-editorial.wide {
+  padding: 32px;
+}
+
+.edu-body-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 32px;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .edu-body-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .appreciation-spotlight-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 /* ============================================================

@@ -1,7 +1,7 @@
 import { useState, FormEvent } from 'react'
 import {
   Mail,
-  Phone,
+  ShieldCheck,
   MapPin,
   Github,
   Linkedin,
@@ -9,11 +9,10 @@ import {
   Check,
   Send,
   Loader2,
-  ShieldCheck,
-  ArrowRight,
   Terminal,
+  Clock,
 } from 'lucide-react'
-import { personal } from '../data/portfolio'
+import { personal, contactConfig } from '../data/portfolio'
 import Reveal from '../components/Reveal'
 
 export default function ContactSection() {
@@ -40,37 +39,64 @@ export default function ContactSection() {
     e.preventDefault()
     setFormState('loading')
 
+    // 1. Try sending via JetForms / Headless Form Endpoint
     try {
-      // 1. Try sending directly to Hostinger's PHP mail handler
-      const res = await fetch('/contact.php', {
+      const res = await fetch(contactConfig.formEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          _replyto: formData.email,
+        }),
+      })
+
+      if (res.ok) {
+        setFormState('success')
+        setFormData({ name: '', email: '', subject: '', message: '' })
+        return
+      }
+    } catch {
+      // Proceed to next fallback
+    }
+
+    // 2. Try Hostinger PHP mail handler if hosted on Apache/PHP
+    try {
+      const phpRes = await fetch('/contact.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify(formData),
       })
 
-      if (res.ok) {
-        const result = await res.json()
+      if (phpRes.ok) {
+        const result = await phpRes.json()
         if (result.success) {
           setFormState('success')
           setFormData({ name: '', email: '', subject: '', message: '' })
           return
         }
       }
-      throw new Error('Fallback to email client')
     } catch {
-      // 2. Client mailto fallback if /contact.php is unavailable (e.g. local dev server)
-      try {
-        const mailtoLink = `mailto:${personal.email}?subject=${encodeURIComponent(
-          formData.subject || 'Security Research / Collaboration Inquiry'
-        )}&body=${encodeURIComponent(
-          `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-        )}`
-        window.location.href = mailtoLink
-        setFormState('success')
-      } catch {
-        setFormState('error')
-        setErrorMsg('Could not dispatch message. Please email directly at ' + personal.email)
-      }
+      // Proceed to mailto fallback
+    }
+
+    // 3. Direct email client fallback if offline or endpoint unavailable
+    try {
+      const mailtoLink = `mailto:${personal.email}?subject=${encodeURIComponent(
+        formData.subject || 'Security Research / Collaboration Inquiry'
+      )}&body=${encodeURIComponent(
+        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+      )}`
+      window.location.href = mailtoLink
+      setFormState('success')
+    } catch {
+      setFormState('error')
+      setErrorMsg(`Could not dispatch automatically. Please email directly at ${personal.email}`)
     }
   }
 
@@ -99,7 +125,7 @@ export default function ContactSection() {
                   <span className="trans-label">SECURE_CHANNEL // STATUS: ACTIVE</span>
                 </div>
                 <p className="trans-text">
-                  Direct communication channels are monitored daily. Inquiries regarding bug bounties, VAPT roles, or security engineering are prioritized.
+                  Direct communication channels are monitored daily. Inquiries regarding bug bounties, VAPT roles, CTF collaborations, or security engineering are prioritized.
                 </p>
               </div>
 
@@ -132,23 +158,19 @@ export default function ContactSection() {
                   </div>
                 </button>
 
-                {/* Phone card */}
-                <a
-                  href={`tel:${personal.phone}`}
-                  className="contact-touchpoint-card"
-                  aria-label="Call phone number"
-                >
+                {/* Response SLA / Security Protocol Card */}
+                <div className="contact-touchpoint-card static">
                   <div className="touchpoint-icon-box">
-                    <Phone size={18} />
+                    <Clock size={18} />
                   </div>
                   <div className="touchpoint-body">
-                    <span className="touchpoint-label">VOICE / SECURE CALL</span>
-                    <span className="touchpoint-val">{personal.phoneDisplay}</span>
+                    <span className="touchpoint-label">RESPONSE SLA &amp; PROTOCOL</span>
+                    <span className="touchpoint-val">&lt; 24h Turnaround Time</span>
                   </div>
                   <div className="touchpoint-action-state">
-                    <span className="action-tag">CALL</span>
+                    <span className="action-tag">FAST_DISPATCH</span>
                   </div>
-                </a>
+                </div>
 
                 {/* Location card */}
                 <div className="contact-touchpoint-card static">

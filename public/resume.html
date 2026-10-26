@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dhruv Mulani — Resume | Cybersecurity Researcher &amp; VAPT</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <style>
+    /* ============================================================ */
+    /* CSS RESET & CORE VARIABLES */
+    /* ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --color-primary: #0A0E17;
+      --color-secondary: #1E293B;
+      --color-text: #1E293B;
+      --color-text-muted: #475569;
+      --color-text-dim: #64748B;
+      --color-accent: #0284C7;
+      --color-accent-dark: #0369A1;
+      --color-border: #E2E8F0;
+      --color-bg-light: #F8FAFC;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--color-text);
+      background-color: #F1F5F9;
+      line-height: 1.35;
+      font-size: 9pt;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ============================================================ */
+    /* TOP ACTION BAR (NON-PRINTING) */
+    /* ============================================================ */
+    .top-action-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #0A0E17;
+      border-bottom: 1px solid #1E293B;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+
+    .bar-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .bar-brand-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #00F5D4;
+      box-shadow: 0 0 8px #00F5D4;
+    }
+
+    .bar-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      font-family: var(--font-sans);
+      border-radius: 6px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: #0284C7;
+      color: #FFFFFF;
+    }
+    .btn-primary:hover {
+      background: #0369A1;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.08);
+      color: #E2E8F0;
+      border-color: rgba(255,255,255,0.15);
+    }
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.15);
+      color: #FFFFFF;
+    }
+
+    /* ============================================================ */
+    /* 1-PAGE RESUME PAPER CANVAS */
+    /* ============================================================ */
+    .resume-wrapper {
+      max-width: 210mm;
+      margin: 24px auto;
+      padding: 0 16px;
+    }
+
+    .resume-sheet {
+      background: #FFFFFF;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      border-radius: 4px;
+      padding: 24px 28px;
+      box-sizing: border-box;
+      /* Engineered strictly for single page */
+      min-height: 275mm;
+      max-width: 210mm;
+      margin: 0 auto;
+    }
+
+    /* Header Section */
+    .resume-header {
+      border-bottom: 2px solid #0A0E17;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .candidate-name {
+      font-family: var(--font-sans);
+      font-size: 20pt;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #0A0E17;
+      line-height: 1.1;
+    }
+
+    .candidate-title {
+      font-family: var(--font-mono);
+      font-size: 9pt;
+      font-weight: 600;
+      color: #0284C7;
+      letter-spacing: 0.04em;
+    }
+
+    .contact-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-top: 6px;
+      font-size: 8.5pt;
+      color: var(--color-text-muted);
+    }
+
+    .contact-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--color-text-muted);
+      text-decoration: none;
+    }
+
+    .contact-item a {
+      color: var(--color-text-muted);
+      text-decoration: none;
+    }
+    .contact-item a:hover {
+      color: #0284C7;
+      text-decoration: underline;
+    }
+
+    .contact-sep {
+      color: #CBD5E1;
+    }
+
+    /* Section Styling */
+    .resume-section {
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-family: var(--font-sans);
+      font-size: 9.5pt;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #0A0E17;
+      border-bottom: 1px solid #CBD5E1;
+      padding-bottom: 2px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: #CBD5E1;
+      margin-left: 8px;
+    }
+
+    .summary-text {
+      font-size: 8.5pt;
+      color: var(--color-text-muted);
+      line-height: 1.4;
+      text-align: justify;
+    }
+
+    /* Experience Items */
+    .exp-item {
+      margin-bottom: 7px;
+    }
+
+    .exp-row-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1px;
+    }
+
+    .exp-company-role {
+      font-size: 9pt;
+      color: #0A0E17;
+    }
+
+    .company-bold {
+      font-weight: 700;
+    }
+
+    .role-text {
+      color: #334155;
+      font-weight: 500;
+    }
+
+    .exp-tenure-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 8pt;
+      color: var(--color-text-dim);
+    }
+
+    .tenure-pill {
+      font-size: 7.5pt;
+      font-weight: 700;
+      color: #0369A1;
+      background: #E0F2FE;
+      padding: 1px 5px;
+      border-radius: 3px;
+      border: 1px solid #BAE6FD;
+      letter-spacing: 0.02em;
+    }
+
+    .bullet-list {
+      list-style-type: disc;
+      padding-left: 14px;
+      margin-top: 2px;
+    }
+
+    .bullet-list li {
+      font-size: 8.2pt;
+      color: var(--color-text-muted);
+      line-height: 1.35;
+      margin-bottom: 1.5px;
+    }
+
+    /* Grid for Skills & Academics */
+    .two-col-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .skills-block {
+      font-size: 8.2pt;
+      color: var(--color-text-muted);
+      line-height: 1.4;
+    }
+
+    .skill-cat {
+      font-weight: 700;
+      color: #0F172A;
+    }
+
+    /* Achievements Grid */
+    .achievements-compact-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px 12px;
+    }
+
+    .achieve-entry {
+      font-size: 8.2pt;
+      line-height: 1.3;
+      display: flex;
+      gap: 4px;
+      color: var(--color-text-muted);
+    }
+
+    .achieve-rank {
+      font-weight: 700;
+      color: #0369A1;
+      white-space: nowrap;
+    }
+
+    .achieve-link {
+      color: #0284C7;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .achieve-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Education Item */
+    .edu-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .edu-degree {
+      font-weight: 700;
+      font-size: 8.8pt;
+      color: #0F172A;
+    }
+
+    .edu-period {
+      font-family: var(--font-mono);
+      font-size: 8pt;
+      color: var(--color-text-dim);
+    }
+
+    .edu-inst {
+      font-size: 8.2pt;
+      color: var(--color-text-muted);
+      margin-top: 1px;
+    }
+
+    .edu-coursework {
+      font-size: 7.8pt;
+      color: var(--color-text-dim);
+      margin-top: 2px;
+    }
+
+    /* ============================================================ */
+    /* STRICT PRINT MEDIA QUERIES (EXACTLY 1 PAGE A4 / LETTER) */
+    /* ============================================================ */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 8mm 9mm 6mm 9mm;
+      }
+
+      body {
+        background: #FFFFFF !important;
+        color: #000000 !important;
+        font-size: 8.5pt !important;
+      }
+
+      .no-print {
+        display: none !important;
+      }
+
+      .resume-wrapper {
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      .resume-sheet {
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+        min-height: auto !important;
+        max-height: 278mm !important;
+        overflow: hidden !important;
+      }
+
+      a {
+        color: #000000 !important;
+        text-decoration: none !important;
+      }
+
+      .tenure-pill {
+        background: #F1F5F9 !important;
+        border: 1px solid #CBD5E1 !important;
+        color: #000000 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Action Bar (hidden in print) -->
+  <header class="top-action-bar no-print">
+    <a href="/" class="bar-brand" title="Return to Portfolio">
+      <span class="bar-brand-dot"></span>
+      <span>DHruvvv.py // PORTFOLIO</span>
+    </a>
+    <div class="bar-actions">
+      <button onclick="window.print()" class="btn-action btn-primary" title="Print or save as 1-page PDF">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+        <span>Print / Save PDF (1-Page)</span>
+      </button>
+      <a href="/Dhruv_Mulani.pdf" download class="btn-action btn-secondary" title="Download direct PDF file">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+        <span>Download PDF</span>
+      </a>
+      <a href="/" class="btn-action btn-secondary">
+        <span>← Portfolio</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Printable 1-Page Resume Canvas -->
+  <main class="resume-wrapper">
+    <article class="resume-sheet">
+
+      <!-- HEADER -->
+      <header class="resume-header">
+        <div class="header-top">
+          <h1 class="candidate-name">Dhruv Mulani</h1>
+          <span class="candidate-title">CYBERSECURITY RESEARCHER · VAPT · SECURITY AUTOMATION</span>
+        </div>
+        <div class="contact-strip">
+          <span class="contact-item">
+            <strong>Email:</strong>&nbsp;<a href="mailto:dhruvmulani.work@gmail.com">dhruvmulani.work@gmail.com</a>
+          </span>
+          <span class="contact-sep">|</span>
+          <span class="contact-item">
+            <strong>Location:</strong>&nbsp;Ahmedabad, India
+          </span>
+          <span class="contact-sep">|</span>
+          <span class="contact-item">
+            <strong>LinkedIn:</strong>&nbsp;<a href="https://linkedin.com/in/dhruv-mulani" target="_blank" rel="noreferrer">linkedin.com/in/dhruv-mulani</a>
+          </span>
+          <span class="contact-sep">|</span>
+          <span class="contact-item">
+            <strong>GitHub:</strong>&nbsp;<a href="https://github.com/dhruv-mulani" target="_blank" rel="noreferrer">github.com/dhruv-mulani</a>
+          </span>
+          <span class="contact-sep">|</span>
+          <span class="contact-item">
+            <strong>TryHackMe:</strong>&nbsp;<a href="https://tryhackme.com/p/Boss.Hack3r" target="_blank" rel="noreferrer">Boss.Hack3r (Top 3%)</a>
+          </span>
+        </div>
+      </header>
+
+      <!-- PROFILE SUMMARY -->
+      <section class="resume-section">
+        <h2 class="section-title">Profile Summary</h2>
+        <p class="summary-text">
+          Offensive cybersecurity practitioner specializing in vulnerability research, penetration testing (VAPT), digital forensics, and security automation. Experienced in discovering high-impact business logic and financial tampering flaws through responsible disclosure, developing AI-assisted offensive security tools, and solving national-tier CTF challenges across binary exploitation, web, and network forensics.
+        </p>
+      </section>
+
+      <!-- WORK EXPERIENCE (With explicit tenure so no manual calculation is required) -->
+      <section class="resume-section">
+        <h2 class="section-title">Work Experience</h2>
+
+        <!-- Cyber Octet -->
+        <div class="exp-item">
+          <div class="exp-row-top">
+            <div class="exp-company-role">
+              <span class="company-bold">Cyber Octet</span> — <span class="role-text">Cybersecurity Intern (VAPT)</span>
+            </div>
+            <div class="exp-tenure-wrap">
+              <span>Nov 2025 – Nov 2026</span>
+              <span class="tenure-pill">1 YEAR</span>
+              <span>· Ahmedabad, Gujarat</span>
+            </div>
+          </div>
+          <ul class="bullet-list">
+            <li>Executed vulnerability assessments and penetration tests across client web applications and system perimeters following OWASP testing guidelines.</li>
+            <li>Conducted targeted reconnaissance, service enumeration, and vulnerability analysis using Burp Suite, Nmap, and custom Python automation scripts.</li>
+            <li>Triaged security findings and delivered detailed technical vulnerability reports with step-by-step remediation guidance to development teams.</li>
+          </ul>
+        </div>
+
+        <!-- SarthiBus -->
+        <div class="exp-item">
+          <div class="exp-row-top">
+            <div class="exp-company-role">
+              <span class="company-bold">SarthiBus</span> — <span class="role-text">Bug Hunter (Vulnerability Research)</span>
+            </div>
+            <div class="exp-tenure-wrap">
+              <span>Aug 2025 – Dec 2025</span>
+              <span class="tenure-pill">5 MONTHS</span>
+              <span>· Surat</span>
+            </div>
+          </div>
+          <ul class="bullet-list">
+            <li>Discovered and responsibly disclosed a critical financial tampering vulnerability in the platform's core ticketing transaction logic.</li>
+            <li>Collaborated directly with engineering leads to validate proof-of-concept, test patch implementations, and enforce server-side validation.</li>
+            <li>Awarded an official <strong>Certificate of Appreciation</strong> from company leadership for outstanding contributions to platform security.</li>
+          </ul>
+        </div>
+
+        <!-- CodTech -->
+        <div class="exp-item">
+          <div class="exp-row-top">
+            <div class="exp-company-role">
+              <span class="company-bold">CodTech</span> — <span class="role-text">Cybersecurity &amp; Ethical Hacking Intern</span>
+            </div>
+            <div class="exp-tenure-wrap">
+              <span>Jan 2025 – Mar 2025</span>
+              <span class="tenure-pill">3 MONTHS</span>
+              <span>· Ahmedabad</span>
+            </div>
+          </div>
+          <ul class="bullet-list">
+            <li>Engineered an automated real-time file integrity monitoring (FIM) daemon in Python to detect unauthorized filesystem modifications and tampering.</li>
+            <li>Conducted API security audits, testing endpoints for broken object level authorization (BOLA) and parameter manipulation flaws.</li>
+            <li>Implemented automated alert dispatchers for suspicious system modifications and anomalous server activity.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- KEY ACHIEVEMENTS & CTFS (Including Zero Trace & KPMG writeups) -->
+      <section class="resume-section">
+        <h2 class="section-title">Achievements &amp; CTF Honors</h2>
+        <div class="achievements-compact-list">
+          <div class="achieve-entry">
+            <span class="achieve-rank">4th Place:</span>
+            <span><strong>Zero Trace CTF 2026</strong> — 18 Solves (Web, Pwn, Crypto, Forensics, OSINT) · <a href="https://github.com/DHRUV-MULANI/zero-trace-ctf-writeups" class="achieve-link" target="_blank" rel="noreferrer">Writeup Repo</a></span>
+          </div>
+          <div class="achieve-entry">
+            <span class="achieve-rank">610/680 Pts:</span>
+            <span><strong>KPMG CTF 2026</strong> (Campus Edition) — 33 Walkthroughs across 10 categories, 31 flags · <a href="https://github.com/DHRUV-MULANI/kpmg-ctf-2026-writeups" class="achieve-link" target="_blank" rel="noreferrer">Writeup Repo</a></span>
+          </div>
+          <div class="achieve-entry">
+            <span class="achieve-rank">Winner:</span>
+            <span><strong>Cyber Shadez’26 National TechFest</strong> — 1st Place in Bug Bounty Category</span>
+          </div>
+          <div class="achieve-entry">
+            <span class="achieve-rank">14th Place:</span>
+            <span><strong>ISEA-ISAP CTF’26</strong> organized by IIT Madras — 1,613 Points earned</span>
+          </div>
+          <div class="achieve-entry">
+            <span class="achieve-rank">Top 3%:</span>
+            <span><strong>TryHackMe Global Standing</strong> — Active Directory compromise, lateral movement &amp; privilege escalation</span>
+          </div>
+          <div class="achieve-entry">
+            <span class="achieve-rank">Honored:</span>
+            <span><strong>Certificate of Appreciation</strong> — SarthiBus (Responsible disclosure of critical financial flaw)</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- TECHNICAL SKILLS & CERTIFICATIONS -->
+      <section class="resume-section">
+        <h2 class="section-title">Technical Skills &amp; Certifications</h2>
+        <div class="two-col-grid">
+          <div class="skills-block">
+            <p><span class="skill-cat">Offensive Security &amp; VAPT:</span> Web &amp; API Penetration Testing, OWASP Top 10, Red Teaming, Bug Bounty, Reconnaissance, Vulnerability Assessment, Exploit Automation.</p>
+            <p style="margin-top: 2px;"><span class="skill-cat">Tools &amp; Frameworks:</span> Burp Suite, Nmap, Metasploit, SQLMap, Nessus, Wireshark, Docker, Linux/Kali, Git, Cloudflare Tunnels.</p>
+            <p style="margin-top: 2px;"><span class="skill-cat">Languages &amp; Scripting:</span> Python, Bash Scripting, C, C++, JavaScript, HTML/CSS, SQL.</p>
+          </div>
+          <div class="skills-block">
+            <p><span class="skill-cat">Certifications &amp; Credentials:</span> Belkasoft Windows Forensics (Certified), Belkasoft Advanced Forensics (Certified), IIT Bombay Cybersecurity Workshop, TryHackMe Credential.</p>
+            <p style="margin-top: 2px;"><span class="skill-cat">CTF &amp; Competitions:</span> CybershadezCTF, VishvaCTF, Hack The Box, AsurCTF, DoomsplayCTF, NeuraCode AI Sprint, THM Hackfinity.</p>
+            <p style="margin-top: 2px;"><span class="skill-cat">Digital Forensics &amp; OSINT:</span> Memory analysis, Windows artifact analysis, IMINT, network packet dissection.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- KEY PROJECTS & TOOLING -->
+      <section class="resume-section">
+        <h2 class="section-title">Key Projects &amp; Security Tooling</h2>
+        <div class="exp-item">
+          <div class="exp-row-top">
+            <div class="exp-company-role">
+              <span class="company-bold">LOGify</span> — <span class="role-text">Unified Log Management &amp; Security Analysis System</span>
+            </div>
+            <span style="font-family: var(--font-mono); font-size: 8pt; color: var(--color-text-dim);">Python · CLI · Cloud Observability</span>
+          </div>
+          <ul class="bullet-list">
+            <li>Built an automated log management platform combining an efficient Python CLI collector agent with a central cloud dashboard for real-time anomaly detection.</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-row-top">
+            <div class="exp-company-role">
+              <span class="company-bold">THM-AutoFlow</span> — <span class="role-text">Automated Challenge &amp; Request Orchestration Framework</span>
+            </div>
+            <span style="font-family: var(--font-mono); font-size: 8pt; color: var(--color-text-dim);">Python · Requests · CLI Automation</span>
+          </div>
+          <ul class="bullet-list">
+            <li>Developed a Python automation framework for CTF session management, structured challenge interaction, and API-driven task execution.</li>
+          </ul>
+        </div>
+
+        <div class="exp-item" style="margin-bottom: 0;">
+          <div class="exp-row-top">
+            <div class="exp-company-role">
+              <span class="company-bold">CryptaVault &amp; OOB-Tunnels</span> — <span class="role-text">Post-Quantum Cryptography &amp; Adversarial Infra</span>
+            </div>
+            <span style="font-family: var(--font-mono); font-size: 8pt; color: var(--color-text-dim);">TypeScript · Shell · Kyber/Dilithium</span>
+          </div>
+          <ul class="bullet-list">
+            <li>Engineered zero-knowledge post-quantum encryption storage (Kyber/Dilithium) and dual-tunnel Cloudflare/ngrok OOB callback infrastructure.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- EDUCATION -->
+      <section class="resume-section" style="margin-bottom: 0;">
+        <h2 class="section-title">Education</h2>
+        <div class="edu-row">
+          <div>
+            <span class="edu-degree">Bachelor of Engineering in Computer Engineering (Final Year)</span>
+            <div class="edu-inst">Institute of Infrastructure, Technology, Research, and Management (IITRAM) · Ahmedabad, India</div>
+          </div>
+          <span class="edu-period">2023 – 2027</span>
+        </div>
+        <div class="edu-coursework">
+          <strong>Coursework:</strong> Operating Systems, Computer Networks, Cybersecurity Fundamentals, Cryptography, Digital Forensics, Web Security, Data Structures.
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+</body>
+</html>

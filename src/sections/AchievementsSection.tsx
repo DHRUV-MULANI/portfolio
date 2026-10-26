@@ -1,5 +1,5 @@
-import { Trophy, Award, Zap, Shield, Flag, CheckCircle2 } from 'lucide-react'
-import { achievements } from '../data/portfolio'
+import { Trophy, Award, Zap, ShieldCheck, Flag, CheckCircle2, FileCheck2, Code2, ExternalLink, Github } from 'lucide-react'
+import { achievementsAndCertificates } from '../data/portfolio'
 import Reveal from '../components/Reveal'
 
 export default function AchievementsSection() {
@@ -8,126 +8,181 @@ export default function AchievementsSection() {
       <div className="container">
         <Reveal>
           <div className="section-label">
-            <span className="eyebrow">06 // PROVEN OUTCOMES</span>
+            <span className="eyebrow">06 // PROVEN OUTCOMES &amp; CREDENTIALS</span>
           </div>
           <div className="section-title-row">
             <h2 className="section-title">
-              Competition &amp; CTF record<span className="title-accent-dot">.</span>
+              Achievements &amp; Certificates<span className="title-accent-dot">.</span>
             </h2>
-            <div className="section-counter-badge">VERIFIED ACHIEVEMENTS</div>
+            <div className="section-counter-badge">VERIFIED MERIT &amp; WRITEUPS</div>
           </div>
           <p className="section-subtitle">
-            Documented results from national-level cybersecurity competitions, vulnerability hunting sprints, and global hacking platforms.
+            National CTF podiums, top challenge writeups, forensic credentials, responsible disclosure appreciation, and competitive hackathon milestones.
           </p>
         </Reveal>
 
-        {/* Primary 3 Highlights */}
+        {/* ============================================================ */}
+        {/* 1. KEY CTF & SECURITY ACHIEVEMENTS (PODIUM GRID) */}
+        {/* ============================================================ */}
         <div className="achievements-podium-grid" style={{ marginTop: '48px' }}>
-          {/* 1st Place Winner */}
-          <Reveal delay={0.1}>
-            <div className="achievement-podium-card gold-rank">
-              <div className="podium-badge-header">
-                <div className="podium-rank-tag">
-                  <Trophy size={14} className="trophy-gold" />
-                  <span>WINNER // 1ST PLACE</span>
-                </div>
-                <span className="podium-year">2026</span>
-              </div>
+          {achievementsAndCertificates.achievements.map((item, idx) => {
+            const isGold = item.rank.toLowerCase().includes('winner') || item.rank.includes('1st')
+            const isSilver = item.rank.includes('4th') || item.rank.includes('14th')
+            const rankClass = isGold ? 'gold-rank' : isSilver ? 'silver-rank' : 'emerald-rank'
 
-              <div className="podium-card-body">
-                <h3 className="podium-event-title">Cyber Shadez '26 National TechFest</h3>
-                <div className="podium-category">Bug Bounty Category</div>
-                <p className="podium-summary">
-                  Secured 1st place in the national Bug Bounty challenge, successfully uncovering and triaging high-severity vulnerabilities under strict time constraints.
+            return (
+              <Reveal key={item.id} delay={idx * 0.08}>
+                <div className={`achievement-podium-card ${rankClass}`}>
+                  <div className="podium-badge-header">
+                    <div className="podium-rank-tag">
+                      {isGold ? (
+                        <Trophy size={14} className="trophy-gold" />
+                      ) : (
+                        <Award size={14} className={isSilver ? 'award-silver' : 'zap-emerald'} />
+                      )}
+                      <span>{item.rank.toUpperCase()}</span>
+                    </div>
+                    <span className="podium-year">{item.year}</span>
+                  </div>
+
+                  <div className="podium-card-body">
+                    <h3 className="podium-event-title">{item.title}</h3>
+                    <div className="podium-category">{item.subtitle}</div>
+                    <p className="podium-summary">{item.description}</p>
+                  </div>
+
+                  {/* Writeup / Certificate Action Row */}
+                  {(item.writeupUrl || item.certUrl) && (
+                    <div className="podium-action-links" style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: '16px' }}>
+                      {item.writeupUrl && (
+                        <a
+                          href={item.writeupUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="podium-action-btn writeup-btn"
+                          aria-label={`View writeup for ${item.title}`}
+                        >
+                          <Github size={12} />
+                          <span>View Writeup</span>
+                          <ExternalLink size={10} />
+                        </a>
+                      )}
+                      {item.certUrl && (
+                        <a
+                          href={item.certUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="podium-action-btn cert-btn"
+                          aria-label={`View official certificate for ${item.title}`}
+                        >
+                          <Award size={12} />
+                          <span>Official Certificate</span>
+                          <ExternalLink size={10} />
+                        </a>
+                      )}
+                    </div>
+                  )}
+
+                  <div className="podium-footer-meta" style={{ marginTop: '16px' }}>
+                    <span className="podium-cert-verified">
+                      <CheckCircle2 size={12} />
+                      VERIFIED OUTCOME
+                    </span>
+                    <span className="podium-domain">{item.issuer}</span>
+                  </div>
+                </div>
+              </Reveal>
+            )
+          })}
+        </div>
+
+        {/* ============================================================ */}
+        {/* 2. RESPONSIBLE DISCLOSURE APPRECIATION & CERTIFICATIONS */}
+        {/* ============================================================ */}
+        <div className="certs-appreciation-layout" style={{ marginTop: '40px' }}>
+          {/* Certificate of Appreciation Callout */}
+          <Reveal delay={0.25}>
+            <div className="appreciation-spotlight-card">
+              <div className="appreciation-icon-col">
+                <ShieldCheck size={28} className="text-accent" />
+              </div>
+              <div className="appreciation-content-col">
+                <div className="appreciation-eyebrow">RESPONSIBLE DISCLOSURE RECOGNITION</div>
+                <h4 className="appreciation-title">Certificate of Appreciation — SarthiBus</h4>
+                <p className="appreciation-desc">
+                  Formally awarded for discovering and responsibly reporting a major financial tampering vulnerability in the platform's transaction logic, safeguarding customer data and payment integrity.
                 </p>
               </div>
-
-              <div className="podium-footer-meta">
-                <span className="podium-cert-verified">
-                  <CheckCircle2 size={12} />
-                  VERIFIED OUTCOME
-                </span>
-                <span className="podium-domain">Bug Bounty</span>
+              <div className="appreciation-badge-col">
+                <span className="security-honor-pill">VERIFIED IMPACT</span>
               </div>
             </div>
           </Reveal>
 
-          {/* 14th Place IIT Madras */}
-          <Reveal delay={0.15}>
-            <div className="achievement-podium-card silver-rank">
-              <div className="podium-badge-header">
-                <div className="podium-rank-tag">
-                  <Award size={14} className="award-silver" />
-                  <span>14TH PLACE // NATIONAL</span>
-                </div>
-                <span className="podium-year">2026</span>
+          {/* Certifications Grid */}
+          <Reveal delay={0.3}>
+            <div className="certs-showcase-wrap" style={{ marginTop: '24px' }}>
+              <div className="certs-section-heading">
+                <FileCheck2 size={16} className="text-accent" />
+                <span>FORMAL CERTIFICATIONS &amp; WORKSHOPS:</span>
               </div>
 
-              <div className="podium-card-body">
-                <h3 className="podium-event-title">ISEA-ISAP CTF '26</h3>
-                <div className="podium-category">IIT Madras — 1,613 Points</div>
-                <p className="podium-summary">
-                  Ranked 14th among hundreds of national collegiate teams in IIT Madras' premier cybersecurity competition, solving complex binary, forensics, and web challenges.
-                </p>
-              </div>
-
-              <div className="podium-footer-meta">
-                <span className="podium-cert-verified">
-                  <CheckCircle2 size={12} />
-                  1,613 PTS EARNED
-                </span>
-                <span className="podium-domain">National CTF</span>
-              </div>
-            </div>
-          </Reveal>
-
-          {/* TryHackMe Top 3% */}
-          <Reveal delay={0.2}>
-            <div className="achievement-podium-card emerald-rank">
-              <div className="podium-badge-header">
-                <div className="podium-rank-tag">
-                  <Zap size={14} className="zap-emerald" />
-                  <span>TOP 3% WORLDWIDE</span>
-                </div>
-                <span className="podium-year">LIVE</span>
-              </div>
-
-              <div className="podium-card-body">
-                <h3 className="podium-event-title">TryHackMe Global Standing</h3>
-                <div className="podium-category">Profile: Boss.Hack3r</div>
-                <p className="podium-summary">
-                  Maintained top 3% global rank through consistent offensive security challenges spanning Active Directory compromise, lateral movement, web exploits, and privilege escalation.
-                </p>
-              </div>
-
-              <div className="podium-footer-meta">
-                <span className="podium-cert-verified">
-                  <CheckCircle2 size={12} />
-                  ACTIVE RESEARCHER
-                </span>
-                <span className="podium-domain">Offensive Ops</span>
+              <div className="certs-cards-grid">
+                {achievementsAndCertificates.certifications.map((cert, idx) => (
+                  <div key={idx} className="cert-card-interactive">
+                    <div className="cert-top-line">
+                      <span className="cert-type-pill">{cert.type}</span>
+                      <span className="cert-status-pill">{cert.badge}</span>
+                    </div>
+                    <div className="cert-main-title">{cert.title}</div>
+                    <div className="cert-issuer-line">Issuer: {cert.issuer}</div>
+                  </div>
+                ))}
               </div>
             </div>
           </Reveal>
         </div>
 
-        {/* Secondary Competition Roster */}
-        <Reveal delay={0.25}>
-          <div className="competitions-roster-wrap" style={{ marginTop: '48px' }}>
-            <div className="roster-header">
-              <Flag size={14} className="text-accent" />
-              <span>CONTINUOUS COMPETITION PARTICIPATION &amp; HACKATHONS:</span>
+        {/* ============================================================ */}
+        {/* 3. COMPETITIONS & HACKATHONS */}
+        {/* ============================================================ */}
+        <div className="competitions-hackathons-dual-grid" style={{ marginTop: '36px' }}>
+          {/* Competitions */}
+          <Reveal delay={0.35}>
+            <div className="roster-panel">
+              <div className="roster-panel-header">
+                <Flag size={15} className="text-accent" />
+                <span>COMPETITIVE CTFS &amp; CHALLENGES</span>
+              </div>
+              <div className="roster-tag-list">
+                {achievementsAndCertificates.competitions.map((comp, idx) => (
+                  <div key={idx} className="roster-badge-item">
+                    <span className="badge-bullet">■</span>
+                    <span className="badge-text">{comp}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="roster-grid">
-              {achievements.secondary.map((comp, idx) => (
-                <div key={idx} className="roster-item">
-                  <span className="roster-bullet">■</span>
-                  <span className="roster-name">{comp}</span>
-                </div>
-              ))}
+          </Reveal>
+
+          {/* Hackathons */}
+          <Reveal delay={0.4}>
+            <div className="roster-panel">
+              <div className="roster-panel-header">
+                <Code2 size={15} className="text-accent" />
+                <span>HACKATHONS &amp; SPRINTS</span>
+              </div>
+              <div className="roster-tag-list">
+                {achievementsAndCertificates.hackathons.map((hack, idx) => (
+                  <div key={idx} className="roster-badge-item hackathon-item">
+                    <span className="badge-bullet">◆</span>
+                    <span className="badge-text">{hack}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        </Reveal>
+          </Reveal>
+        </div>
       </div>
     </section>
   )

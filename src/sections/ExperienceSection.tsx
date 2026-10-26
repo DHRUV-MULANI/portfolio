@@ -1,6 +1,6 @@
 import { experience } from '../data/portfolio'
 import Reveal from '../components/Reveal'
-import { Briefcase, Calendar, MapPin, CheckCircle2, Award, ArrowRight } from 'lucide-react'
+import { Calendar, MapPin, CheckCircle2, Award, Clock } from 'lucide-react'
 
 export default function ExperienceSection() {
   return (
@@ -26,6 +26,11 @@ export default function ExperienceSection() {
                   <div className="exp-time-badge">
                     <Calendar size={13} />
                     <span>{job.period}</span>
+                  </div>
+
+                  <div className="exp-duration-pill">
+                    <Clock size={12} />
+                    <span>TENURE: {job.duration}</span>
                   </div>
 
                   {job.current ? (

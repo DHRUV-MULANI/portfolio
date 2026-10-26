@@ -39,9 +39,10 @@ export default function Footer() {
               <li><a href="#expertise">03 // Capability Matrix</a></li>
               <li><a href="#experience">04 // Operational Track Record</a></li>
               <li><a href="#projects">05 // Systems &amp; Tooling</a></li>
-              <li><a href="#achievements">06 // Competition Results</a></li>
-              <li><a href="#education">07 // Academics &amp; Credentials</a></li>
+              <li><a href="#achievements">06 // Achievements &amp; Certificates</a></li>
+              <li><a href="#education">07 // Academics</a></li>
               <li><a href="#contact">08 // Transmission Endpoint</a></li>
+              <li><a href="/resume.html" target="_blank" rel="noopener noreferrer">09 // Resume (1-Page Dedicated)</a></li>
             </ul>
           </div>
 

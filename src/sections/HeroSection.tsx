@@ -93,10 +93,11 @@ export default function HeroSection() {
               </a>
 
               <a
-                href={personal.resumeUrl}
-                download
+                href="/resume.html"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn btn-editorial-ghost"
-                aria-label="Download resume PDF"
+                aria-label="Open Dhruv Mulani Resume in new tab"
               >
                 <Download size={14} />
                 <span>Resume</span>
