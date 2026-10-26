@@ -40,41 +40,68 @@ export default function ContactSection() {
     setFormState('loading')
     setErrorMsg('')
 
-    // 1. Prepare FormData payload for direct inbox delivery (no external email client opened)
-    const payload = new FormData()
-    payload.append('name', formData.name)
-    payload.append('email', formData.email)
-    payload.append('_replyto', formData.email)
-    payload.append(
-      '_subject',
-      formData.subject
-        ? `[Portfolio Dispatch] ${formData.subject}`
-        : `[Portfolio Dispatch] Security Inquiry from ${formData.name}`
-    )
-    payload.append('message', formData.message)
-    payload.append('_captcha', 'false')
-    payload.append('_template', 'table')
-
-    // Dispatch directly to FormSubmit endpoint via AJAX
+    // 1. Dispatch directly via Web3Forms API (Direct to Gmail Inbox, no mail app popup)
     try {
       const res = await fetch(contactConfig.formEndpoint, {
         method: 'POST',
         headers: {
+          'Content-Type': 'application/json',
           Accept: 'application/json',
         },
-        body: payload,
+        body: JSON.stringify({
+          access_key: contactConfig.accessKey,
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject
+            ? `[Portfolio Dispatch] ${formData.subject}`
+            : `[Portfolio Dispatch] Security Inquiry from ${formData.name}`,
+          message: formData.message,
+          from_name: 'Dhruv Mulani Portfolio Dispatch',
+          botcheck: '',
+        }),
       })
 
-      if (res.ok) {
+      const result = await res.json()
+      if (res.ok && result.success) {
         setFormState('success')
         setFormData({ name: '', email: '', subject: '', message: '' })
         return
       }
     } catch {
-      // Proceed to PHP fallback if hosted on Apache/Hostinger
+      // Proceed to fallback
     }
 
-    // 2. Try PHP mail handler fallback
+    // 2. Fallback to FormSubmit AJAX
+    try {
+      const fallbackPayload = new FormData()
+      fallbackPayload.append('name', formData.name)
+      fallbackPayload.append('email', formData.email)
+      fallbackPayload.append('_replyto', formData.email)
+      fallbackPayload.append(
+        '_subject',
+        formData.subject
+          ? `[Portfolio Dispatch] ${formData.subject}`
+          : `[Portfolio Dispatch] Security Inquiry from ${formData.name}`
+      )
+      fallbackPayload.append('message', formData.message)
+      fallbackPayload.append('_captcha', 'false')
+
+      const fallbackRes = await fetch('https://formsubmit.co/ajax/dhruvmulani.work@gmail.com', {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: fallbackPayload,
+      })
+
+      if (fallbackRes.ok) {
+        setFormState('success')
+        setFormData({ name: '', email: '', subject: '', message: '' })
+        return
+      }
+    } catch {
+      // Proceed to PHP fallback
+    }
+
+    // 3. Try PHP mail handler fallback
     try {
       const phpRes = await fetch('/contact.php', {
         method: 'POST',
@@ -83,8 +110,8 @@ export default function ContactSection() {
       })
 
       if (phpRes.ok) {
-        const result = await phpRes.json()
-        if (result.success) {
+        const phpResult = await phpRes.json()
+        if (phpResult.success) {
           setFormState('success')
           setFormData({ name: '', email: '', subject: '', message: '' })
           return
@@ -95,7 +122,6 @@ export default function ContactSection() {
     }
 
     // Direct background transmission failed (e.g. ad-blocker or offline)
-    // Do NOT force mailto popup unexpectedly; provide clean in-form notification
     setFormState('error')
     setErrorMsg(
       `Direct dispatch could not connect. Please reach out directly at ${personal.email}`

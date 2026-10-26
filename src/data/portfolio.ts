@@ -371,10 +371,11 @@ export const certifications = [
 
 export const contactConfig = {
   protocol: 'DIRECT_MAIL',
-  dispatchService: 'FORMSUBMIT_DIRECT_INBOX',
+  dispatchService: 'WEB3FORMS_DIRECT_INBOX',
   email: 'dhruvmulani.work@gmail.com',
-  // Direct inbox delivery endpoint (no mail client popup):
-  formEndpoint: 'https://formsubmit.co/ajax/dhruvmulani.work@gmail.com',
+  // Web3Forms Direct Endpoint & Key:
+  formEndpoint: 'https://api.web3forms.com/submit',
+  accessKey: 'c02ec53c-d737-4791-812a-398e6c4f429b',
 }
 
 export const navLinks = [
