@@ -371,10 +371,10 @@ export const certifications = [
 
 export const contactConfig = {
   protocol: 'DIRECT_MAIL',
-  dispatchService: 'JETFORMS_DISPATCH',
+  dispatchService: 'FORMSUBMIT_DIRECT_INBOX',
   email: 'dhruvmulani.work@gmail.com',
-  // JetForms / Formspree / Web3Forms endpoint:
-  formEndpoint: 'https://formspree.io/f/mqkenvpo',
+  // Direct inbox delivery endpoint (no mail client popup):
+  formEndpoint: 'https://formsubmit.co/ajax/dhruvmulani.work@gmail.com',
 }
 
 export const navLinks = [

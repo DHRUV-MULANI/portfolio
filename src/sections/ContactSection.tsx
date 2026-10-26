@@ -38,22 +38,31 @@ export default function ContactSection() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     setFormState('loading')
+    setErrorMsg('')
 
-    // 1. Try sending via JetForms / Headless Form Endpoint
+    // 1. Prepare FormData payload for direct inbox delivery (no external email client opened)
+    const payload = new FormData()
+    payload.append('name', formData.name)
+    payload.append('email', formData.email)
+    payload.append('_replyto', formData.email)
+    payload.append(
+      '_subject',
+      formData.subject
+        ? `[Portfolio Dispatch] ${formData.subject}`
+        : `[Portfolio Dispatch] Security Inquiry from ${formData.name}`
+    )
+    payload.append('message', formData.message)
+    payload.append('_captcha', 'false')
+    payload.append('_template', 'table')
+
+    // Dispatch directly to FormSubmit endpoint via AJAX
     try {
       const res = await fetch(contactConfig.formEndpoint, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
           Accept: 'application/json',
         },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-          _replyto: formData.email,
-        }),
+        body: payload,
       })
 
       if (res.ok) {
@@ -62,10 +71,10 @@ export default function ContactSection() {
         return
       }
     } catch {
-      // Proceed to next fallback
+      // Proceed to PHP fallback if hosted on Apache/Hostinger
     }
 
-    // 2. Try Hostinger PHP mail handler if hosted on Apache/PHP
+    // 2. Try PHP mail handler fallback
     try {
       const phpRes = await fetch('/contact.php', {
         method: 'POST',
@@ -82,22 +91,15 @@ export default function ContactSection() {
         }
       }
     } catch {
-      // Proceed to mailto fallback
+      // Offline / blocked
     }
 
-    // 3. Direct email client fallback if offline or endpoint unavailable
-    try {
-      const mailtoLink = `mailto:${personal.email}?subject=${encodeURIComponent(
-        formData.subject || 'Security Research / Collaboration Inquiry'
-      )}&body=${encodeURIComponent(
-        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-      )}`
-      window.location.href = mailtoLink
-      setFormState('success')
-    } catch {
-      setFormState('error')
-      setErrorMsg(`Could not dispatch automatically. Please email directly at ${personal.email}`)
-    }
+    // Direct background transmission failed (e.g. ad-blocker or offline)
+    // Do NOT force mailto popup unexpectedly; provide clean in-form notification
+    setFormState('error')
+    setErrorMsg(
+      `Direct dispatch could not connect. Please reach out directly at ${personal.email}`
+    )
   }
 
   return (
@@ -244,7 +246,7 @@ export default function ContactSection() {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      placeholder="e.g. Alex Chen"
+                      placeholder="e.g. Dhruv Mulani"
                       className="field-input"
                     />
                   </div>
@@ -260,7 +262,7 @@ export default function ContactSection() {
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      placeholder="alex@company.com"
+                      placeholder="e.g. dhruvmulani.work@gmail.com"
                       className="field-input"
                     />
                   </div>
@@ -277,7 +279,7 @@ export default function ContactSection() {
                     required
                     value={formData.subject}
                     onChange={handleChange}
-                    placeholder="e.g. Security Engineering Opportunity / VAPT Audit"
+                    placeholder="e.g. VAPT Security Audit / Offensive Security Assessment"
                     className="field-input"
                   />
                 </div>
@@ -293,19 +295,39 @@ export default function ContactSection() {
                     required
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Describe the opportunity, timeline, or security project..."
+                    placeholder="e.g. Namaste Dhruv, reviewed your Zero Trace CTF writeups and VAPT findings. We would like to collaborate on an offensive security assessment and penetration testing audit for our infrastructure..."
                     className="field-textarea"
                   />
                 </div>
 
                 {formState === 'error' && (
-                  <div className="form-error-banner">{errorMsg}</div>
+                  <div className="form-error-banner">
+                    <div>{errorMsg}</div>
+                    <a
+                      href={`mailto:${personal.email}?subject=${encodeURIComponent(
+                        formData.subject || 'Security Inquiry'
+                      )}&body=${encodeURIComponent(
+                        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+                      )}`}
+                      className="form-fallback-action"
+                      style={{
+                        display: 'inline-block',
+                        marginTop: '8px',
+                        color: 'var(--neon-green)',
+                        textDecoration: 'underline',
+                        fontSize: '12px',
+                        fontFamily: 'var(--font-mono)',
+                      }}
+                    >
+                      Click here to launch email client manually →
+                    </a>
+                  </div>
                 )}
 
                 {formState === 'success' && (
                   <div className="form-success-banner">
                     <Check size={16} />
-                    <span>Transmission sent! Message dispatched directly to {personal.email}.</span>
+                    <span>Direct transmission delivered! Message dispatched straight to {personal.email}.</span>
                   </div>
                 )}
 
