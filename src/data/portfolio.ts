@@ -375,7 +375,9 @@ export const contactConfig = {
   email: 'dhruvmulani.work@gmail.com',
   // Web3Forms Direct Endpoint & Key:
   formEndpoint: 'https://api.web3forms.com/submit',
-  accessKey: 'c02ec53c-d737-4791-812a-398e6c4f429b',
+  accessKey:
+    import.meta.env.VITE_WEB3FORMS_ACCESS_KEY ||
+    'c02ec53c-d737-4791-812a-398e6c4f429b',
 }
 
 export const navLinks = [
